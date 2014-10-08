@@ -18,19 +18,22 @@ $('#banner').CookiesBanner();
 ###Options
 ~~~
 var options = {
-    'expires'   :396, // 13 monthes
-    'path'      :'/',
-    'cookieName':'CookiesBanner',
-  };
-  $('#banner').CookiesBanner(options);
+  'expires'   :396, // 13 monthes
+  'path'      :'/',
+  'cookieName':'CookiesBanner',
+};
+$('#banner').CookiesBanner(options);
 ~~~
 
 ####Methods
+You can call method from the banner.
+~~~
 $('#banner').data('CookiesBanner').get();         // Get the cookie value
 $('#banner').data('CookiesBanner').set('value');  // Set the cookie value
 $('#banner').data('CookiesBanner').reset();       // Clear cookie
 $('#banner').data('CookiesBanner').show();        // Show banner
 $('#banner').data('CookiesBanner').close();       // Hide banner
+~~~
 
 ####Callback
 fire callback when ...
