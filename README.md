@@ -32,19 +32,19 @@ $('#banner').CookiesBanner(options);
 ####Methods
 You can call method from the banner.
 ~~~
-$('#banner').data('CookiesBanner').get();         // Get the cookie value
-$('#banner').data('CookiesBanner').set('value');  // Set the cookie value
-$('#banner').data('CookiesBanner').reset();       // Clear cookie
-$('#banner').data('CookiesBanner').show();        // Show banner
-$('#banner').data('CookiesBanner').close();       // Hide banner
+$('#banner').data('instance').accept();       // Accept and close banner
+$('#banner').data('instance').refuse();       // Refuse and close banner
+$('#banner').data('instance').close();        // Only close banner
+$('#banner').data('instance').reset();        // Clear cookie
+$('#banner').data('instance').display();      // Display banner
 ~~~
 
-####Callback
-fire callback when ...
+####Events
+You can subscribe to events.
 ~~~
-onAccepted   // if cookie is accepted even after reload page
-onRefused    // if cookie is refused even after reload page
-onReset      // after call the method reset
-onShow       // after the banner is showed
-onHide       // after the banner is hidde
+$('#banner').on('accepted', function() {});    // if cookie is accepted even after reload page
+$('#banner').on('refused', function() {});     // if cookie is refused even after reload page
+$('#banner').on('reset', function() {});       // after reset() is called
+$('#banner').on('display', function() {});     // after the banner is displayed
+$('#banner').on('closed', function() {});      // after the banner is closed
 ~~~
