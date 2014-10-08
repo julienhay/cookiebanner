@@ -1,124 +1,102 @@
 /**
  * Cookies Banner
- * Cyril Pereira / Extreme-sensio 2014
+ * @author Cyril Pereira / Extreme-sensio 2014
+ * @author Antony de Lopez Vallerie / Extreme-sensio 2014
  */
 
 (function($) {
-  var CookiesBanner = function(allElem,option){
+  if (typeof $.removeCookie == 'undefined') {
+    throw 'jQuery.cookie is not loaded';
+  }
 
-    var options = {
-      'expires'   :396, // 13 monthes
-      'path'      :'/',
-      'cookieName':'CookiesBanner',
-      'onAccepted':false,
-      'onRefused' :false,
-      'onReset'   :false,
-      'onShow'    :false,
-      'onHide'    :false
+  $.fn.CookiesBanner = function(options) {
+    var defaults = {
+      'expires'   : 396, // 13 monthes
+      'path'      : '/',
+      'cookieName':  'CookiesBanner'
     };
 
-    var myOptions = option ? $.extend(options,option) : options;
+    options = $.extend(defaults, options);
 
-    var init = function(allElem)
-    {
+    function init(allElem) {
       var $allElem = $(allElem);
 
-      $allElem.each(function(elm)
-      {
+      $allElem.each(function(elm) {
         $this = $(this);
-        var opt = myOptions;
+        var opt = options;
 
-        if($this.data('expires'))
+        if ($this.data('expires'))
           opt.expires = $this.data('expires');
-        if($this.data('path'))
+        if ($this.data('path'))
           opt.path    = $this.data('path');
-        if($this.data('cookiename'))
+        if ($this.data('cookiename'))
           opt.cookieName    = $this.data('cookiename');
 
-        var functions = {
-          'options':opt,
-          'close':function(btn)
-          {
-            var optCookie = { path:this.options.path,expires: this.options.expires };
+        var optCookie = { path: opt.path, expires: opt.expires };
 
-            if($(btn).hasClass('accept'))
-            {
-              this.set('accepted', optCookie);
-              if(typeof this.options.onAccepted == 'function')
-                this.options.onAccepted();
-            }else if($(btn).hasClass('refuse'))
-            {
-              this.set('refused', optCookie);
-              if(typeof this.options.onRefused == 'function')
-                this.options.onRefused();
-            }
+        function getCookie() {
+          return $.cookie(opt.cookieName) ? $.cookie(opt.cookieName) : false;
+        }
 
-            $this.hide();
+        function setCookie(v, options) {
+          $.cookie(opt.cookieName,v, options ? options : {});
+          return $.cookie(opt.cookieName);
+        }
 
-            if(typeof this.options.onHide == 'function')
-              this.options.onHide();
+        var publicFunctions = {
+          accept: function() {
+            setCookie('accepted', optCookie);
+            $this.trigger('accepted');
+            this.close();
           },
-          'show':function()
-          {
+          refuse: function() {
+            setCookie('refused', optCookie);
+            $this.trigger('refused');
+            this.close();
+          },
+          display: function() {
             $this.show();
-            if(typeof this.options.onShow == 'function')
-              this.options.onShow();
+            $this.trigger('displayed');
           },
-          'reset':function()
-          {
-            $.removeCookie(this.options.cookieName, { path: this.options.path });
-            if(typeof this.options.onReset == 'function')
-              this.options.onReset();
-            return $.cookie(this.options.cookieName);
+          close: function() {
+            $this.hide();
+            $this.trigger('closed');
           },
-          'get':function()
-          {
-            return $.cookie(this.options.cookieName) ? $.cookie(this.options.cookieName) : false;
-          },
-          'set':function(v, options)
-          {
-            $.cookie(this.options.cookieName,v, options ? options : {});
-            return $.cookie(this.options.cookieName);
+          reset: function() {
+            $.removeCookie(opt.cookieName, { path: opt.path });
+            $this.trigger('reset');
+            return $.cookie(opt.cookieName);
           }
         };
 
-        $this.find('.close').click(function(e)
-        {
+        $this.click(function(e) {
           e.preventDefault();
-          functions.close(this);
+
+          if ($(e.target).hasClass('accept')) {
+            publicFunctions.accept();
+          } else if ($(e.target).hasClass('refuse')) {
+            publicFunctions.refuse();
+          } else if ($(e.target).hasClass('close')) {
+            publicFunctions.close();
+          }
         });
 
-        $this.data('CookiesBanner',functions);
+        $this.data('instance', publicFunctions);
 
-        if(!$.cookie(opt.cookieName))
-        {
-          functions.show();
-        }else{
-          if($.cookie(opt.cookieName)=='accepted' && typeof functions.options.onAccepted == 'function')
-          {
-            functions.options.onAccepted();
-          }else
-          if($.cookie(opt.cookieName)=='refused' && typeof functions.options.onRefused == 'function')
-          {
-            functions.options.onRefused();
+        var status = getCookie();
+        if (!status) {
+          publicFunctions.display();
+        } else {
+          if (status == 'accepted') {
+            publicFunctions.accept();
+          } else if (status == 'refused') {
+            publicFunctions.refuse();
           }
         }
-
       });
     };
 
-    init(allElem);
+    init(this);
+    return this;
   };
-
-  $.fn.extend({
-    CookiesBanner: function(option){
-      if(typeof $.removeCookie == 'undefined')
-      {
-        console.log('jquery.cookie not found');
-        return {};
-      }else{
-        return new CookiesBanner(this,option);
-      }
-    }
-  });
 })(jQuery)

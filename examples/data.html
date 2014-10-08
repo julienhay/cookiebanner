@@ -12,7 +12,7 @@
                 Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt.</strong>
         </p>
         <div class="btn">
-            <a href="#" class="close accept">Close</a>
+            <a href="#" class="accept">Close</a>
         </div>
         <div class="clear"><!-- --></div>
     </div>
@@ -22,16 +22,13 @@
 <script type="text/javascript" src="../vendor/jquery.cookie.js"></script>
 <script type="text/javascript" src="../source/cookiesbanner.js"></script>
 <script type="text/javascript">
-    $('#cookiesBanner').CookiesBanner({
-        onHide:function()
-        {
-            console.log('close');
-        },
-        onAccepted:function()
-        {
-            console.log('accepted');
-        }
-    });
+    $('#cookiesBanner').CookiesBanner()
+    .on('closed', function() {
+      console.log('closed');
+    })
+    .on('accepted', function() {
+      console.log('accepted');
+    })
 </script>
 </body>
 </html>

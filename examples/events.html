@@ -12,27 +12,46 @@
                 Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt.</strong>
         </p>
         <div class="btn">
-            <a href="#" class="close accept">Close</a>
+            <a href="#" class="accept">Accept</a> -
+            <a href="#" class="refuse">Refuse</a> -
+            <a href="#" class="close">Close</a>
         </div>
         <div class="clear"><!-- --></div>
     </div>
 </div>
 
+<a id="display" href="#">Display</a>
+<a id="reset" href="#">Reset</a>
+
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="../vendor/jquery.cookie.js"></script>
 <script type="text/javascript" src="../source/cookiesbanner.js"></script>
 <script type="text/javascript">
-    $('#cookiesBanner').CookiesBanner({
-        cookieName:'events',
-        onHide:function()
-        {
-            console.log('close');
-        },
-        onAccepted:function()
-        {
-            console.log('accepted');
-        }
+    $('#cookiesBanner').CookiesBanner({cookieName:'events'})
+    .on('displayed', function() {
+      console.log('displayed');
+    })
+    .on('closed', function() {
+      console.log('closed');
+    })
+    .on('accepted', function() {
+      console.log('accepted');
+    })
+    .on('refused', function() {
+      console.log('refused');
+    })
+    .on('reset', function() {
+      console.log('reset');
+      $('#cookiesBanner').data('instance').display();
     });
+
+    $('#display').click(function() {
+      $('#cookiesBanner').data('instance').display();
+    });
+    $('#reset').click(function() {
+      $('#cookiesBanner').data('instance').reset();
+    });
+
 </script>
 </body>
 </html>
