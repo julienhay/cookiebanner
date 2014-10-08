@@ -1,0 +1,47 @@
+html,body{
+    margin:0;
+    padding:0;
+}
+/* Cookies ban */
+#cookiesBanner {
+  background:#e7e8e9;
+  font-family: helvetica,arial;
+  color:#000;
+  font-size:12px;
+  width:100%;
+    display:none;
+}
+#cookiesBanner .content {
+  margin:0 auto;
+  padding:15px 0;
+  width:1200px
+}
+#cookiesBanner .content p {
+  float:left;
+  margin:0;
+  padding:0;
+  width:1000px;
+}
+#cookiesBanner .content .btn a.closeCookies,#cookiesBanner .content .btn a.legals {
+  color:#fff;
+  font-weight:bold;
+  padding:10px;
+  display:inline-block;
+  margin-right:15px;
+  text-decoration:none;
+  border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  -moz-box-shadow: -3px 3px 5px 0px #cfcfcf;
+  -webkit-box-shadow: -3px 3px 5px 0px #cfcfcf;
+  -o-box-shadow: -3px 3px 5px 0px #cfcfcf;
+  box-shadow: -3px 3px 5px 0px #cfcfcf;
+  filter:progid:DXImageTransform.Microsoft.Shadow(color=#cfcfcf, Direction=225, Strength=5);
+}
+#cookiesBanner .content .btn a.legals {
+  background:#000;
+}
+#cookiesBanner .content .btn a.closeCookies {
+  background:#5faa0e;
+}
+.clear {clear:both;}

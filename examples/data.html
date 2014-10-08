@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Example - Cookies Banner - Data</title>
+    <link rel="stylesheet" href="css/style_bandeau_cookies.css" type="text/css" />
+</head>
+<body>
+
+<div class="cookies-ban" id="cookiesBanner" data-cookiename="data" data-expires="25">
+    <div class="content">
+        <p>
+            <strong>Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.<br/>
+                Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt.</strong>
+        </p>
+        <div class="btn">
+            <a href="#" class="close accept">Close</a>
+        </div>
+        <div class="clear"><!-- --></div>
+    </div>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../vendor/jquery.cookie.js"></script>
+<script type="text/javascript" src="../source/cookiesbanner.js"></script>
+<script type="text/javascript">
+    $('#cookiesBanner').CookiesBanner({
+        onHide:function()
+        {
+            console.log('close');
+        },
+        onAccepted:function()
+        {
+            console.log('accepted');
+        }
+    });
+</script>
+</body>
+</html>
