@@ -10,9 +10,13 @@ Extreme-Sensio 2014
 
 ##Documentation
 
-###How to use
+###Installation
 ~~~
-$('#banner').CookiesBanner();
+<sript type="text/javascript" src="../vendor/jquery.cookie.js"></script>
+<script type="text/javascript" src="../source/cookiesbanner.js"></script>~
+<script type="text/javascript">
+  $('#banner').CookiesBanner();
+</script>
 ~~~
 
 ###Options
