@@ -3,7 +3,7 @@ cookiebanner
 
 Cookie Banner is a jQuery plugin to help you to manage the French CNIL certification.
 
-GitHub :
+GitHub : https://github.com/extreme-sensio/cookiebanner
 
 ##Author
 Extreme-Sensio 2014
@@ -12,8 +12,8 @@ Extreme-Sensio 2014
 
 ###Installation
 ~~~
-<sript type="text/javascript" src="../vendor/jquery.cookie.js"></script>
-<script type="text/javascript" src="../source/cookiesbanner.js"></script>~
+<script type="text/javascript" src="../vendor/jquery.cookie.js"></script>
+<script type="text/javascript" src="../source/cookiesbanner.js"></script>
 <script type="text/javascript">
   $('#banner').CookiesBanner();
 </script>
