@@ -46,19 +46,20 @@
         var publicFunctions = {
           accept: function() {
             setCookie('accepted', optCookie);
-            $this.trigger('accepted');
             this.close();
+            $this.trigger('accepted');
           },
           refuse: function() {
             setCookie('refused', optCookie);
-            $this.trigger('refused');
             this.close();
+            $this.trigger('refused');
           },
           display: function() {
             $this.show();
             $this.trigger('displayed');
           },
           close: function() {
+            console.log('close');
             $this.hide();
             $this.trigger('closed');
           },
@@ -71,7 +72,6 @@
 
         $this.click(function(e) {
           e.preventDefault();
-
           if ($(e.target).hasClass('accept')) {
             publicFunctions.accept();
           } else if ($(e.target).hasClass('refuse')) {
@@ -84,19 +84,24 @@
         $this.data('instance', publicFunctions);
 
         var status = getCookie();
-        if (!status) {
-          publicFunctions.display();
-        } else {
-          if (status == 'accepted') {
-            publicFunctions.accept();
-          } else if (status == 'refused') {
-            publicFunctions.refuse();
+
+        setTimeout(function()
+        {
+          if (!status) {
+            publicFunctions.display();
+          } else {
+            if (status == 'accepted') {
+              publicFunctions.accept();
+            } else if (status == 'refused') {
+              publicFunctions.refuse();
+            }
           }
-        }
+        }, 100);
+
       });
-    };
+    }
 
     init(this);
     return this;
   };
-})(jQuery)
+})(jQuery);
