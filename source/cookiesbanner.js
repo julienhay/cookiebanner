@@ -71,12 +71,14 @@
         };
 
         $this.click(function(e) {
-          e.preventDefault();
           if ($(e.target).hasClass('accept')) {
+            e.preventDefault();
             publicFunctions.accept();
           } else if ($(e.target).hasClass('refuse')) {
+            e.preventDefault();
             publicFunctions.refuse();
           } else if ($(e.target).hasClass('close')) {
+            e.preventDefault();
             publicFunctions.close();
           }
         });
