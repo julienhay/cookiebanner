@@ -59,7 +59,6 @@
             $this.trigger('displayed');
           },
           close: function() {
-            console.log('close');
             $this.hide();
             $this.trigger('closed');
           },
