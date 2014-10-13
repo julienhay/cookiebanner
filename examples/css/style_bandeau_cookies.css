@@ -2,6 +2,7 @@ html,body{
     margin:0;
     padding:0;
 }
+
 /* Cookies ban */
 #cookiesBanner {
   background:#e7e8e9;
@@ -9,20 +10,43 @@ html,body{
   color:#000;
   font-size:12px;
   width:100%;
-    display:none;
+  display:none;
 }
+
 #cookiesBanner .content {
   margin:0 auto;
   padding:15px 0;
-  width:1200px
+  width:1200px;
 }
+
+#cookiesBanner .content .col {
+  float: left;  
+  padding: 5px;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+#cookiesBanner .content .col-80 { width: 80%; }
+#cookiesBanner .content .col-70 { width: 70%; }
+#cookiesBanner .content .col-60 { width: 60%; }
+#cookiesBanner .content .col-50 { width: 50%; }
+#cookiesBanner .content .col-40 { width: 40%; }
+#cookiesBanner .content .col-30 { width: 30%; }
+#cookiesBanner .content .col-20 { width: 20%; }
+#cookiesBanner .content .col-10 { width: 10%; }
+
+#cookiesBanner .content {
+  margin:0 auto;
+  padding:15px 0;
+}
+
 #cookiesBanner .content p {
   float:left;
   margin:0;
   padding:0;
-  width:1000px;
 }
-#cookiesBanner .content .btn a.closeCookies,#cookiesBanner .content .btn a.legals {
+#cookiesBanner .content .btn a, #cookiesBanner .content .btn a {
   color:#fff;
   font-weight:bold;
   padding:10px;
@@ -41,7 +65,35 @@ html,body{
 #cookiesBanner .content .btn a.legals {
   background:#000;
 }
+#cookiesBanner .content .btn a.refuseCookies {
+  background:#FF0000;
+}
+
 #cookiesBanner .content .btn a.closeCookies {
   background:#5faa0e;
 }
-.clear {clear:both;}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media only screen and (max-width : 1200px) {
+  #cookiesBanner .content {
+    width:100%;
+  }
+  
+  #cookiesBanner .content .btn {
+    text-align: center;
+  }
+
+  #cookiesBanner .content .col-80 { width: 100%; }
+  #cookiesBanner .content .col-70 { width: 100%; }
+  #cookiesBanner .content .col-60 { width: 100%; }
+  #cookiesBanner .content .col-50 { width: 100%; }
+  #cookiesBanner .content .col-40 { width: 100%; }
+  #cookiesBanner .content .col-30 { width: 100%; }
+  #cookiesBanner .content .col-20 { width: 100%; }
+  #cookiesBanner .content .col-10 { width: 100%; }
+}
